@@ -4,13 +4,12 @@ async function* foo() {
   yield await Promise.resolve('c');
 }
 
-let str = '';
-
 async function generate() {
-  for await (const val of foo()) {
-    str = str + val;
+  const parts = [];
+  for await (const value of foo()) {
+    parts.push(value);
   }
-  console.log(str);
+  console.log(parts.join(''));
 }
 
 generate();
